@@ -1,13 +1,88 @@
 
 
-📽️Filmise🎬
- – API REST (Node.js, Express, MySQL)
-Présentation
-Filmise est une plateforme type Netflix développée dans le cadre d’un projet solo. Elle permet aux utilisateurs de s’inscrire, se connecter, consulter et gérer une liste de films et séries.
-L’API est conçue avec Node.js, Express.js et MySQL, et suit une architecture MVC claire.
-Elle intègre une sécurité robuste via JWT, le hachage des mots de passe, la vérification des rôles (admin), et la protection des routes.
+# 🎬 Filmise – Plateforme de gestion de films/séries
 
-Technologies utilisées
+Bienvenue sur **Filmise**, une API REST sécurisée construite avec **Node.js**, **Express.js** et **MySQL**.  
+Ce projet permet de gérer une plateforme de type **Netflix**, avec utilisateurs, authentification, rôles, et gestion de films/séries.
+
+---
+
+## 🚀 Fonctionnalités
+
+### Utilisateurs
+
+| Méthode | Route               | Accès                | Description                      |
+|---------|---------------------|----------------------|----------------------------------|
+| POST    | `/api/users`        | Public               | Créer un utilisateur             |
+| GET     | `/api/users`        | Admin                | Obtenir tous les utilisateurs    |
+| GET     | `/api/users/:id`    | Connecté ou Admin    | Obtenir un utilisateur par ID    |
+| PUT     | `/api/users/:id`    | Connecté ou Admin    | Modifier un utilisateur          |
+| DELETE  | `/api/users/:id`    | Admin                | Supprimer un utilisateur         |
+
+### Authentification
+
+| Méthode | Route         | Accès  | Description                      |
+|---------|---------------|--------|----------------------------------|
+| POST    | `/api/login`  | Public | Se connecter + recevoir un JWT   |
+
+### Films / Séries
+
+
+| Méthode | Route                | Accès                 | Description                        |
+|---------|----------------------|------------------------|------------------------------------|
+| GET     | `/api/movies`        | Public                 | Voir tous les films/séries         |
+| GET     | `/api/movies/:id`    | Public                 | Voir un film/série par ID          |
+| POST    | `/api/movies`        | Connecté               | Ajouter un film/série              |
+| PUT     | `/api/movies/:id`    | Créateur ou Admin      | Modifier un film/série             |
+| DELETE  | `/api/movies/:id`    | Créateur ou Admin      | Supprimer un film/série            |
+
+---
+
+## 🔐 Sécurité
+
+- **JWT** : Authentification par token
+- **Bcrypt** : Hachage sécurisé des mots de passe
+- **.env** : Données sensibles protégées
+- **Rôles** : Admin vs Utilisateur standard
+- **Middleware** : Protection des routes
+
+---
+
+## 🗂️ Structure MVC
+filmise/
+├── controllers/
+│   └── userController.js
+│   └── movieController.js
+├── models/
+│   └── userModel.js
+│   └── movieModel.js
+├── middlewares/
+│   └── authMiddleware.js
+│   └── isAdmin.js
+├── routes/
+│   └── userRoutes.js
+│   └── movieRoutes.js
+├── .env
+├── server.js
+---
+
+## ⚙️ Installation & Lancement
+
+```bash
+git clone https://github.com/ton-pseudo/filmise.git
+cd filmise
+npm install
+npm run dev
+Créer un fichier .env :
+DB_HOST=localhost
+DB_PORT=8848
+DB_USER=root
+DB_PASSWORD=root
+DB_NAME=films-series
+JWT_SECRET=maCleSecrete235
+PORT=5006
+
+🧠 Technologies utilisées
 Node.js
 
 
@@ -17,191 +92,38 @@ Express.js
 MySQL
 
 
-bcrypt
+JWT
 
 
-jsonwebtoken
+Bcrypt
 
 
-dotenv
+Dotenv
 
 
-Postman / Thunder Client pour les tests
-
-
-React.js (à venir pour le frontend)
+Thunder Client (test API)
 
 
 
-Structure du projet (MVC)
-filmise/
-├── controllers/
-│   ├── authController.js
-│   └── userController.js
-├── middlewares/
-│   ├── authMiddleware.js
-│   ├── isAdmin.js
-│   └── checkMovieOwner.js
-├── models/
-│   ├── db.js
-│   ├── userModel.js
-│   └── movieModel.js
-├── routes/
-│   ├── authRoutes.js
-│   ├── userRoutes.js
-│   └── movieRoutes.js
-├── .env
-├── server.js
-└── README.md
+📸 Aperçu visuel (bonus si front + capture)
+Ajoute ici une capture d’écran si tu fais aussi un front React plus tard !
 
-Fonctionnalités principales
-Utilisateurs
-Route               
-Méthode
-Accès            
-Description
-/api/users       
-POST   
-Public            
-Créer un utilisateur
-/api/users       
-GET    
-Admin             
-Récupérer tous les utilisateurs
-/api/users/:id   
-GET    
-Connecté / Admin  
-Récupérer un utilisateur
-/api/users/:id   
-PUT    
-Connecté / Admin  
-Modifier un utilisateur
-/api/users/:id   
-DELETE 
-Admin             
-Supprimer un utilisateur
-
-Authentification
-Route               
-Méthode
-Accès
-Description
-/api/login
-POST   
-Public
-Connexion + génération d’un token JWT
-
-Films / Séries
-Route               
-Méthode
-Accès            
-Description
-/api/movies      
-GET    
-Public            
-Liste de tous les films/séries
-/api/movies/:id  
-GET    
-Public            
-Détails d’un film
-/api/movies      
-POST   
-Utilisateur connecté
-Ajouter un film
-/api/movies/:id  
-PUT    
-Créateur / Admin  
-Modifier un film
-/api/movies/:id  
-DELETE 
-Créateur / Admin  
-Supprimer un film
+✅ Objectifs du projet
+Respect des conventions REST
 
 
-Sécurité
-Authentification via JWT
+Authentification sécurisée
 
 
-Hashage de mot de passe avec bcrypt
+Séparation claire Model / Controller / Route
 
 
-Vérification de rôle (admin)
-
-
-Vérification du propriétaire d’un film
-
-
-Variables sensibles dans .env
-
-
-Middleware de vérification de token
+Bonnes pratiques Git & GitHub
 
 
 
-.env exemple
-DB_HOST=localhost
-DB_PORT=2382
-DB_USER=root
-DB_PASSWORD=root
-DB_NAME=films-series
-PORT=5000
-JWT_SECRET=maCleSecrete24
+🧑‍💻 Réalisé par
+Projet solo API REST – Barbara A. – Avril 2025
 
-Installation & Lancement
-Cloner le dépôt :
-
-
-git clone https://github.com/votre-utilisateur/filmise.git
-cd filmise
-Installer les dépendances :
-
-
-npm install
-Configurer le fichier .env à la racine.
-
-
-Démarrer le serveur :
-
-
-npm start
-
-Base de données MySQL
-Exemple de table users :
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
-  email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  role ENUM('user', 'admin') DEFAULT 'user',
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-Exemple de table movies :
-CREATE TABLE movies (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  description TEXT,
-  type VARCHAR(50),
-  year INT,
-  createdBy INT,
-  FOREIGN KEY (createdBy) REFERENCES users(id) ON DELETE CASCADE
-);
-
-Statut du projet
-Backend terminé (CRUD, sécurité, JWT)
-
-
-Tests API (Thunder Client / Postman)
-
-
-Frontend React (à venir)
-
-
-Déploiement (optionnel)
-
-
-
-Auteur
-Projet réalisé par Barbara Anis – 2025
-Dans le cadre du projet solo API REST (Encadré par Asssofac montreuil)
 
 
