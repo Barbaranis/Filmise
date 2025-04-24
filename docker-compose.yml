@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./frontend/backend
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./frontend/backend:/app
+    env_file:
+      - ./frontend/backend/.env
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: films-series
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - '3306:3306'
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
+
