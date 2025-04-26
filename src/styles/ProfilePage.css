@@ -1,0 +1,23 @@
+.profile-page {
+    padding: 40px;
+    background-color: #0d0d0d;
+    color: white;
+    min-height: 100vh;
+  }
+  
+  .profile-section {
+    margin-bottom: 30px;
+  }
+  
+  .profile-section h2 {
+    color: #ff4c4c;
+    margin-bottom: 15px;
+  }
+  
+  .profile-info {
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  

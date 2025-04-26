@@ -1,0 +1,23 @@
+/* frontend/src/styles/MoviePage.css */
+.movie-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: white;
+  }
+  
+  
+  .movie-image {
+    max-width: 400px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .movie-details {
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  

@@ -1,0 +1,113 @@
+
+
+
+
+.register-form {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    color: white;
+    z-index: 2;
+  }
+  
+  
+
+ /* Apparition fluide */
+ .register-form {
+    animation: fadeInUp 2s ease-out;
+  }
+  
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+
+
+  
+  .register-form h2 {
+    color: #e50914;
+    margin-bottom: 20px;
+    font-size: 26px;
+  }
+  
+  
+  .register-form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    margin-left: -2%;
+  }
+  
+  
+  .register-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #e50914;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: -3%;
+  }
+  
+  
+  .register-form button:hover {
+    background-color: #ffffff;
+    color: #ff030f;
+  }
+  
+  
+  .success-message {
+    color: #00ff99;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  
+  .switch-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  
+  .switch-link a {
+    color: #f6121d;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  
+  .switch-link a:hover {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+  
+  
+  /* Responsive */
+  @media screen and (max-width: 600px) {
+    .register-form {
+      padding: 20px;
+      margin: 30px 15px;
+    }
+  }
+  
+  

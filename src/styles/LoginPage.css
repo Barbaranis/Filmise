@@ -1,0 +1,44 @@
+
+
+.login-page {
+    background-color: #00000050;
+    min-height: 100vh;
+    color: #fff;
+  }
+  
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+  }
+  
+  
+  
+  /* Apparition fluide */
+  .login-container {
+    animation: fadeInUp 2s ease-out;
+  }
+  
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  /* Responsive mobile */
+  @media screen and (max-width: 600px) {
+    .login-container {
+      padding: 20px;
+      font-size: 14px;
+    }
+  }
+  
