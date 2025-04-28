@@ -1,22 +1,21 @@
+// src/components/MovieSection.jsx
 import React from "react";
 import MovieCard from "./MovieCard";
+import "../styles/MovieSection.css";
 
-const MovieSection = ({ movies, title }) => {
+
+const MovieSection = ({ movies }) => {
   return (
-    <section className="movie-section">
-      <h2>{title}</h2>
-      <div className="movie-list">
-        {movies.map((movie, index) => (
-          <MovieCard
-            key={index}
-            title={movie.title}
-            image={movie.image}
-            description={movie.description}
-          />
+    <div className="movie-section">
+      <div className="movie-slider">
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 
+
 export default MovieSection;
+

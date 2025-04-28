@@ -1,51 +1,98 @@
-// src/pages/MoviePage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/MoviePage.css";
 
 
 const MoviePage = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // ID du film depuis l'URL
   const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [reviews, setReviews] = useState([]);
+  const [content, setContent] = useState("");
   const [error, setError] = useState("");
+  const token = localStorage.getItem("token");
 
 
   useEffect(() => {
-    const fetchMovie = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/api/movies/${id}`);
-        if (!response.ok) {
-          throw new Error("Film non trouvé");
-        }
-        const data = await response.json();
-        setMovie(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    fetch(`${process.env.REACT_APP_API_URL}/movies/${id}`)
+      .then(res => res.json())
+      .then(data => setMovie(data))
+      .catch(err => console.error(err));
 
 
-    fetchMovie();
+    fetch(`${process.env.REACT_APP_API_URL}/reviews/movie/${id}`)
+      .then(res => res.json())
+      .then(data => setReviews(data))
+      .catch(err => console.error(err));
   }, [id]);
 
 
-  if (loading) return <p>Chargement en cours...</p>;
-  if (error) return <p>Erreur : {error}</p>;
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/reviews`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ movie_id: id, content }),
+      });
+
+
+      const data = await response.json();
+
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erreur lors de l'ajout de l'avis");
+      }
+
+
+      setReviews([...reviews, { content }]);
+      setContent(""); // Reset
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+
+  if (!movie) return <p>Chargement...</p>;
 
 
   return (
     <div className="movie-page">
-      <h2>{movie.title}</h2>
-      <img src={movie.image_url || "/images/default.jpg"} alt={movie.title} />
+      <h1>{movie.title}</h1>
+      <img src={movie.image_url} alt={movie.title} />
       <p>{movie.description}</p>
-      <p><strong>Catégorie :</strong> {movie.category}</p>
-      <p><strong>Date de sortie :</strong> {movie.release_date}</p>
 
 
-      {/* Partie avis bientôt ici */}
+      <h2>Avis des utilisateurs</h2>
+      {reviews.length > 0 ? (
+        <ul>
+          {reviews.map((review, index) => (
+            <li key={index}>{review.content}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>Pas encore d'avis pour ce film.</p>
+      )}
+
+
+      {token ? (
+        <form onSubmit={handleReviewSubmit}>
+          <textarea
+            placeholder="Écrire votre avis..."
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            required
+          />
+          <button type="submit">Envoyer l'avis</button>
+          {error && <p className="error-message">{error}</p>}
+        </form>
+      ) : (
+        <p>Connectez-vous pour laisser un avis.</p>
+      )}
     </div>
   );
 };

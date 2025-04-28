@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode"; // ← correction ici
+import { Link, useLocation } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa"; // Ajouté pour l'icône profil
 import "../styles/Navbar.css";
 
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [username, setUsername] = useState("");
   const location = useLocation();
-  const navigate = useNavigate();
 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsAuthenticated(true);
-      try {
-        const decoded = jwtDecode(token); // ← correction ici aussi
-        setUsername(decoded.name || decoded.username || "Utilisateur");
-      } catch (err) {
-        console.error("Erreur lors du décodage du token :", err);
-        setUsername("Utilisateur");
-      }
     } else {
       setIsAuthenticated(false);
-      setUsername("");
     }
   }, [location]);
 
@@ -33,19 +23,11 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsAuthenticated(false);
-    navigate("/login");
-  };
-
-
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
-
-
   return (
     <nav className="navbar">
-      <h1 className="logo">Filmise</h1>
+      <Link to="/home" className="logo">
+        <img src="/images/LogoFilmise.jpg" alt="Filmise Logo" className="logo-image" />
+      </Link>
 
 
       <div className="burger" onClick={toggleMenu}>
@@ -56,40 +38,22 @@ const Navbar = () => {
 
 
       <ul className={`nav-links ${isOpen ? "open" : ""}`}>
+        <li><Link to="/about">À propos</Link></li>
+        <li><Link to="/contact">Contact</Link></li>
         {isAuthenticated && (
-          <li className="greeting-burger">{username}</li>
-        )}
-
-
-        {isAuthenticated ? (
-          <>
-            <li><Link to="/home">Accueil</Link></li>
-            <li><Link to="/profile">Profil</Link></li>
-            <li><Link to="/about">À propos</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            <li>
-              <button className="logout-btn" onClick={handleLogout}>
-                Déconnexion
-              </button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li><Link to="/about">À propos</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-            {!isAuthPage && (
-              <>
-                <li><Link to="/login">Connexion</Link></li>
-                <li><Link to="/register">Inscription</Link></li>
-              </>
-            )}
-          </>
+          <li>
+            <Link to="/profile" className="profile-link-mobile">
+              <FaUserCircle size={22} />
+            </Link>
+          </li>
         )}
       </ul>
 
 
       {isAuthenticated && !isOpen && (
-        <div className="greeting-desktop">{username}</div>
+        <Link to="/profile" className="profile-link-desktop">
+          <FaUserCircle size={28} />
+        </Link>
       )}
     </nav>
   );

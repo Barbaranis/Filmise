@@ -9,6 +9,15 @@ const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes'); // <--- Ajouté
 
 
+
+
+
+// Helmet 
+
+const helmet = require('helmet');
+app.use(helmet());
+
+
 // Middlewares globaux
 app.use(cors());
 app.use(express.json());

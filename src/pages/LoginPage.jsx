@@ -17,6 +17,10 @@ const backgroundImages = [
   "/images/netflix11.jpg",
   "/images/netflix12.jpg",
   "/images/netflix13.jpg",
+  "/images/netflix14.jpg",
+  "/images/netflix15.jpg",
+  "/images/netflix16.jpg",
+  "/images/netflix17.jpg",
 
 ];
 

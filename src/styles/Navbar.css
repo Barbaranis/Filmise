@@ -1,201 +1,168 @@
+/* NAVBAR GÉNÉRALE */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #111;
-    z-index: 2;
-    width: 90%;
-   
-  }
-  
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #e50914;
-  }
-  
-
-  /*Narbar*/
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-  }
-  
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  
-  .nav-links a:hover {
-    color: #f6121d;
-
-  }
-  
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #111;
-    color: #802929;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #111111af;
+  width: 100%;
+  z-index: 10;
+  animation: fadeInDown 1s ease;
+}
 
 
+/* Animation apparition navbar */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 
-  /* Apparition fluide */
-  .navbar {
-    animation: fadeInUp 2s ease-out;
-  }
-  
-  
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+/* LOGO */
+.logo-image {
+  height: 80px;
+  width: auto;
+  cursor: pointer;
+  border-radius: 50%;
+}
 
 
-  
-  .logo {
-    font-size: 24px;
-    color: red;
-  }
-  
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-    list-style: none;
-  }
-  
-  
-  .nav-links li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  
+/* NAV LINKS (classiques) */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+
+/* LIENS */
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+
+/* Effet hover liens */
+.nav-links a:hover {
+  color: #e50914;
+}
+
+
+/* BURGER MENU */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+
+.burger .line {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 4px 0;
+  transition: background 0.3s ease;
+}
+
+
+/* Hover effet burger */
+.burger:hover .line {
+  background: #e50914;
+}
+
+
+/* BOUTON DECONNEXION */
+.logout-btn {
+  background-color: #e50914;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+
+.logout-btn:hover {
+  background-color: white;
+  color: #e50914;
+  transform: scale(1.05);
+}
+
+
+/* ICONE PROFIL */
+.profile-icon {
+  color: white;
+  font-size: 28px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s;
+}
+
+
+.profile-icon:hover {
+  color: #e50914;
+  transform: scale(1.1);
+}
+
+
+/* Nom affiché à droite (desktop) */
+.greeting-desktop {
+  color: white;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+
+/* Nom affiché en burger menu */
+.greeting-burger {
+  font-weight: bold;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+}
+
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
   .burger {
-    display: none;
+    display: flex;
+  }
+
+
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background: #111;
     flex-direction: column;
-    cursor: pointer;
-  }
-  
-  
-  .burger .line {
-    width: 25px;
-    height: 3px;
-    background: rgb(255, 255, 255);
-    margin: 4px 0;
-  }
-  
-
-
-  .burger:hover  .line {
-    background: #e50914;
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    padding: 0;
   }
 
 
-
-
-
-  .logout-btn {
-    background-color: #e50914;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-  }
-  
-  
-  .logout-btn:hover {
-    background-color: white;
-    color: #e50914;
-    border: 1px solid #e50914;
-  }
-  
-  
-
-
-
-
-
-
-
-
-
-  .greeting-desktop {
-    color: white;
-    margin-left: auto;
-    margin-right: 20px;
-    font-weight: bold;
-  }
-  
-  
-  .greeting-burger {
-    font-weight: bold;
-    color: white;
+  .nav-links.open {
+    max-height: 300px;
     padding: 10px 0;
+  }
+
+
+  .nav-links li {
+    padding: 10px;
     text-align: center;
   }
-  
-  
+}
 
-
-
-
-
-
-  
-  /* Responsive */
-  @media screen and (max-width: 768px) {
-    .burger {
-      display: flex;
-    }
-  
-  
-    .nav-links {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      background: #111;
-      flex-direction: column;
-      width: 100%;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-in-out;
-    }
-  
-
-  
-    .nav-links.open {
-      max-height: 300px;
-      padding: 10px 0;
-    }
-  
-  
-    .nav-links li {
-      padding: 10px;
-      text-align: center;
-    }
-  }
-  
-  

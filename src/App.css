@@ -69,10 +69,10 @@ html, body, #root {
   
   /* Navbar */
   .navbar {
-    width: 95%;
+    width: 89%;
     position: relative; /* Très important pour z-index */
     z-index: 10;
-    background-color: #000000;
+    background-color: #000000a0;
     display: flex;
     justify-content: space-between;
     align-items: center;
