@@ -1,0 +1,107 @@
+/* App.css – Filmise version stable */
+
+
+/* Reset général */
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Fond noir global */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  
+  /* Structure principale */
+  .App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+  }
+  
+  
+  /* Carrousel en fond */
+  .carrousel-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Toujours derrière tout */
+    overflow: hidden;
+  }
+  
+  
+
+
+
+
+  .carrousel-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(2px) brightness(0.5);
+    transition: opacity 1.5s ease-in-out, filter 2s ease-in-out;
+    animation: bg-zoom 20s ease-in-out infinite;
+  }
+  
+  
+  /* Zoom lent sur background */
+  @keyframes bg-zoom {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  
+  /* Navbar */
+  .navbar {
+    width: 89%;
+    position: relative; /* Très important pour z-index */
+    z-index: 10;
+    background-color: #000000a0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  
+  /* Footer */
+  .footer {
+    width: 100%;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    position: relative;
+    z-index: 5; /* Passe au-dessus du carrousel */
+  }
+  
+  
+  /* Pages (login, home, profile, etc.) */
+  .login-page, .register-page, .home-page, .profile-page, .movie-page, .contact-page, .about-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 2; /* Contenu visible au-dessus du carrousel */
+  }
+  
+  

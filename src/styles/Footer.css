@@ -1,0 +1,41 @@
+footer {
+    background-color: #111;
+    color: #ccc;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    border-top: 1px solid #333;
+    width: 100%;
+  }
+  
+  footer a {
+    color: #fff;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: #ff4f4f;
+    text-decoration: underline;
+  }
+  
+  
+
+  
+  /* Apparition fluide */
+  .footer {
+    animation: fadeInUp 2s ease-out;
+  }
+  
+  
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

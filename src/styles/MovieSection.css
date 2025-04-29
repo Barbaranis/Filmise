@@ -1,0 +1,19 @@
+/* src/styles/MovieSection.css */
+.movie-section {
+    margin: 20px 0;
+  }
+  
+  
+  .movie-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
+  }
+  
+  
+  .movie-slider::-webkit-scrollbar {
+    display: none;
+  }
+  
+  

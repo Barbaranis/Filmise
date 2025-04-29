@@ -1,0 +1,35 @@
+.carrousel-strip {
+  display: flex;
+  width: 200%;
+  animation: scroll-left 20s linear infinite;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 70%;
+  width: auto;
+}
+
+
+.carrousel-strip-img {
+  flex: 0 0 auto;
+  width: 400px;
+  height: 700px;
+  object-fit: cover;
+  margin-right: 20px;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Animation du carrousel */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
