@@ -1,5 +1,3 @@
-Voici un README.md complet et professionnel pour ton projet Filmise :
-
 # Filmise – Projet Solo API REST
 
 
